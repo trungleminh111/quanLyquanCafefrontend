@@ -27,11 +27,13 @@ function doRegister() {
 
 function register(email, password) {
     let params = { 'email': email, 'password': password }
-    $.post('register.php', params, function (data) {
+    $.post(BASE_URL +'/register.php', params, function (data) {
         let res = JSON.parse(data)
         if (res.code == true) {
             window.location = 'login.html'
         } else 
-            alert('Register Failed');
+         
+            window.location = 'login.html'
+            
     })
 }
