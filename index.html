@@ -1,14 +1,15 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Title</title>
+    <title>Quan an</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="public/css/main.css">
     <link rel="stylesheet" href="public/img/themify-icons/themify-icons.css">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-    
+    <script src="public/js/main.js"></script>
+    <script src="public/js/order_detail.js"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
@@ -19,9 +20,9 @@
                 <div class="row">
                     <div class="col-md-7">
                         <div class="header-left">
+                            <input class="search" type="search" placeholder="search">
                             <button class="ti-search"></button>
-                            <input type="search">
-                            <button>Phòng Vip 1</button>
+                            <button class="room">Phòng Vip 1</button>
                             <button class="nameA">A</button>
                             <button class="nameB">B</button>
                             <button class="nameC">C</button>
@@ -50,12 +51,12 @@
                                 <button class="soluong">Số Lượng Khách Ngồi<i class="ti-user"></i></button>
                             </div>
                             <div class="formbody">
-                                <table>
+                                <table class="table order-table align-items-center">
                                     <tr>
                                         <th style="width: 50px;">#</th>
                                         <th style="width: 200px;">Tên Hàng Hóa</th>
-                                        <th style="width: 100px;">DVT</th>
-                                        <th style="width: 400px;">SL</th>
+                                        <th style="width: 100px;">ĐVT</th>
+                                        <th style="width: 400px;">Số Lượng</th>
                                         <th style="width: 200px;">Đơn Giá</th>
                                         <th style="width: 250px;">Thành Tiền</th>
                                         <th style="width: 100px;">Xóa</th>
@@ -89,9 +90,9 @@
                             </form>
                         </div>
                         <div class="input-info-right">
-                            <button class="total-money" onclick="sumtotal()">
-                                <p >Tổng thành tiền </p>
-                            </button>
+                            <div class="total-money">
+                                <p onclick="sumtotal()">Tổng thành tiền </p>
+                            </div>
                             <div class="discount">
                                 <p class="info-name">Chiết khấu</p>
                                 <input type="text" value="0" class="total">
@@ -108,8 +109,8 @@
                                 </div>
                             </div>
                             <div class="sum-total">
-                                <b class="info-name" >Tổng cộng</b>
-                                <button class="total"><b id="sumprice"></b></button>
+                                <b class="info-name">Tổng cộng</b>
+                                <button class="total"><b>650,000</b></button>
                             </div>
                             <div class="money-user">
                                 <p class="info-name">Tiền khách trả</p>                                
@@ -149,7 +150,9 @@
                                 </div>
                             </div>
                             <div class="row" id="product_list">
+                             
                         
+                              
                                 
                             
                              
@@ -162,13 +165,23 @@
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="public/js/main.js"></script>
-    <script src="public/js/order_detail.js"></script>
-    <script src="admin/js/category.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="../js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="../assets/demo/chart-area-demo.js"></script>
+    <script src="../assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+    <script src="../js/datatables-simple-demo.js"></script>
+    <script src="../js/product.js"></script>
     <script>
-     
+        $(document).ready(function () {
+            /**
+             * Code here
+             */
+             get_user_list()
+        })
     </script>
   </body>
   

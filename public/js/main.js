@@ -14,10 +14,12 @@ function init_gui(){
 
     btn_food.onclick = function(){
         load_food_list()
+        
     }
 
     btn_drink.onclick = function(){
         load_drink_list()
+      
     }
 }
 
@@ -37,14 +39,14 @@ function load_drink_list(){
 
 function render_product(product_list) {
     let dom_product = document.getElementById('product_list')
-    dom_product.innerHTML = '';
+    product_list.innerHTML = '';
 
     product_list.forEach(product => {
         let product_node = create_product_node(product)
         dom_product.appendChild(product_node)
 
         product_node.onclick = function(){
-            let order_detail = new OrderDetail(product.id , product.name , 'Ly' , 1 , product.price )
+            let order_detail = new OrderDetail(product.id , product.name , 'Món' , 1 , product.price )
             add_to_order(order_detail)
         }
     });

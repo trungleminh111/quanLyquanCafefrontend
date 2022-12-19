@@ -32,8 +32,6 @@ function register(email, password) {
         if (res.code == true) {
             window.location = 'login.html'
         } else 
-         
-            window.location = 'login.html'
-            
+            alert('Register Failed');
     })
 }

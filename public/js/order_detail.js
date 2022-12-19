@@ -9,7 +9,19 @@ class OrderDetail {
 }
 var order = []
 function add_to_order(order_detail) {
-    order.push(order_detail)
+    //create new or update
+    var product_exist = false
+    for(let i = 0; i < order.length; i++){
+        if(order[i].product_id == order_detail.product_id){
+            order[i].product_quantity += 1
+            product_exist = true
+            break;
+        }
+    }
+
+    if(!product_exist)
+        order.push(order_detail)
+
     render_order()
 }
 
@@ -53,28 +65,32 @@ function create_order_detail_node(index, order_detail) {
     // End unit
 
     // Begin quantity
-    let order_detail_quantity_wrap = document.createElement('td')
-    let order_detail_quantity_minus = document.createElement('button')
-    order_detail_quantity_minus.setAttribute('class', 'minus ti-minus')
-    order_detail_quantity_minus.onclick = function () {
-        update_order(order_detail, -1)
+    let product_quantity_wrap = document.createElement('td')
+    product_quantity_wrap.setAttribute('class', 'input-number')
+    root.appendChild(product_quantity_wrap)
+
+    let product_quantity_minus = document.createElement('button')
+    product_quantity_minus.innerText = '-'
+    product_quantity_minus.onclick = function () {
+        update_order_detail(order_detail, -1)
         render_order()
     }
-    order_detail_quantity_wrap.append(order_detail_quantity_minus)
+    product_quantity_wrap.appendChild(product_quantity_minus)
 
-    let order_detail_quantity = document.createElement('input')
-    order_detail_quantity.setAttribute('class', 'sl')
-    order_detail_quantity.value = order_detail.product_quantity
-    order_detail_quantity_wrap.append(order_detail_quantity)
+    let product_quantity = document.createElement('input')
+    product_quantity.setAttribute('type', 'number')
+    product_quantity.setAttribute('min', 1)
+    product_quantity.setAttribute('max', 1)
+    product_quantity.value = order_detail.product_quantity
+    product_quantity_wrap.appendChild(product_quantity)
 
-    let order_detail_quantity_plus = document.createElement('button')
-    order_detail_quantity_plus.setAttribute('class', 'plus ti-plus')
-    order_detail_quantity_plus.onclick = function () {
-        update_order(order_detail, 1)
+    let product_quantity_plus = document.createElement('button')
+    product_quantity_plus.innerText = '+'
+    product_quantity_plus.onclick = function () {
+        update_order_detail(order_detail, 1)
         render_order()
     }
-    order_detail_quantity_wrap.append(order_detail_quantity_plus)
-    root.append(order_detail_quantity_wrap)
+    product_quantity_wrap.appendChild(product_quantity_plus)
     // End quantity
 
     // Begin price
@@ -96,14 +112,13 @@ function create_order_detail_node(index, order_detail) {
     order_detail_trash.setAttribute('class', 'btn-delete ti-trash')
     order_detail_trash_wrap.append(order_detail_trash)
     order_detail_trash.onclick = function () {
-        remove_order_detail(order_detail.product_id)
+        remove_order_detail(order_detail)
         render_order()
     }
 
     function sumtotal(s){
         s = order_detail.product_price * order_detail.product_quantity 
         root.append(order_detail_total_price)
-        
     }
 
     sumtotal(0);
@@ -116,9 +131,9 @@ function create_order_detail_node(index, order_detail) {
 /**
  * Xóa
  */
-function remove_order_detail(product_id) {
+function remove_order_detail(order_detail) {
     for (let i = 0; i < order.length; i++) {
-        if (order[i].product_id == product_id) {
+        if (order[i].product_id == order_detail.product_id) {
             order.splice(i, 1)
             break;
         }
@@ -127,7 +142,7 @@ function remove_order_detail(product_id) {
 /**
  * Update
  */
-function update_order(order_detail, quantity) {
+function update_order_detail(order_detail, quantity) {
     for (let i = 0; i < order.length; i++) {
         if (order[i].product_id == order_detail.product_id) {
             order[i].product_quantity += quantity
