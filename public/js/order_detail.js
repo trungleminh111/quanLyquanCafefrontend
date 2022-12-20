@@ -152,4 +152,3 @@ function update_order_detail(order_detail, quantity) {
         }
     }
 }
-

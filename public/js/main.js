@@ -14,8 +14,7 @@ function init_gui(){
 
     btn_food.onclick = function(){
         load_food_list()
-        
-    }
+}
 
     btn_drink.onclick = function(){
         load_drink_list()
@@ -39,7 +38,7 @@ function load_drink_list(){
 
 function render_product(product_list) {
     let dom_product = document.getElementById('product_list')
-    product_list.innerHTML = '';
+    dom_product.innerHTML = '';
 
     product_list.forEach(product => {
         let product_node = create_product_node(product)
